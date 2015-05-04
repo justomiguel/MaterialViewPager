@@ -3,6 +3,7 @@ MaterialViewPager
 
 [![Build Status](https://travis-ci.org/florent37/MaterialViewPager.svg)](https://travis-ci.org/florent37/MaterialViewPager)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialViewPager-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1731)
+[![Android Weekly](https://img.shields.io/badge/android--weekly-151-blue.svg)](http://androidweekly.net/issues/issue-151)
 [![Join the chat at https://gitter.im/florent37/MaterialViewPager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/florent37/MaterialViewPager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Material Design ViewPager easy to use library
@@ -18,15 +19,6 @@ And have a look on a sample Youtube Video : [Youtube Link](http://www.youtube.co
 [![Video](http://share.gifyoutube.com/KroLAw.gif)](http://www.youtube.com/watch?v=r95Tt6AS18c)
 
 #Download
-
-In your root build.gradle add
-```groovy
-repositories {
-    maven {
-        url  "http://dl.bintray.com/florent37/maven"
-    }
-}
-```
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialViewPager/images/download.svg)](https://bintray.com/florent37/maven/MaterialViewPager/_latestVersion)
 ```groovy
@@ -48,17 +40,69 @@ Add MaterialViewPager to your activity's layout
     app:viewpager_color="@color/colorPrimary"
     app:viewpager_headerHeight="200dp"
     app:viewpager_headerAlpha="1.0"
-    app:viewpager_hideLogoWithFade="true"
+    app:viewpager_hideLogoWithFade="false"
     app:viewpager_hideToolbarAndTitle="true"
     app:viewpager_enableToolbarElevation="true"
     />
+```
+
+with **header_logo.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/logo_white"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/materialviewpager_logoHeight"
+    android:text="Material is Good"
+    android:textSize="30sp"
+    android:textColor="@android:color/white"/>
 ```
 
 You will see on Android Studio Preview :
 
 ![alt preview](https://raw.github.com/florent37/MaterialViewPager/master/screenshots/preview_small.png)
 
-**Retrieve the MaterialViewPager**
+To get a beautiful screen and enable preview, you theme may follow
+
+```xml
+<style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
+</style>
+
+<style name="AppTheme" parent="AppBaseTheme">
+
+   <item name="android:textColorPrimary">@android:color/white</item>
+   <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+   <item name="android:windowTranslucentStatus" tools:targetApi="21">true</item>
+
+   <item name="android:windowContentOverlay">@null</item>
+   <item name="windowActionBar">false</item>
+
+   <!-- Toolbar Theme / Apply white arrow -->
+   <item name="colorControlNormal">@android:color/white</item>
+   <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
+
+   <!-- Material Theme -->
+   <item name="colorPrimary">@color/colorPrimary</item>
+   <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+   <item name="colorAccent">@color/accent_color</item>
+
+   <item name="android:navigationBarColor" tools:targetApi="21">@color/navigationBarColor</item>
+   <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+
+</style>
+
+<style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <!-- White arrow -->
+    <item name="colorControlNormal">@android:color/white</item>
+</style>
+
+<style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+    <item name="spinBars">true</item>
+    <item name="color">@color/drawerArrowColor</item>
+</style>
+```
+
+#Retrieve the MaterialViewPager
 
 You can use MaterialViewPager as an usual Android View, and get it by findViewById
 
